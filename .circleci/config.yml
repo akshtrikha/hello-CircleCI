@@ -28,6 +28,7 @@ jobs:
           at: /tmp/workspace
       - run:
           command: |
+            sudo -n apt install tree
             tree
 
 workflows:
