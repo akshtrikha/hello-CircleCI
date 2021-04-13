@@ -15,6 +15,7 @@ jobs:
             mkdir tmp
             mkdir /tmp/workspace
             echo "Hello World" > output.txt
+            mv output.txt /tmp/workspace
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
@@ -30,7 +31,7 @@ jobs:
             cat output.txt
 
 workflows:
-  commit:
+  Sharing_Files:
     jobs:
       - save_output
       - print_output:
