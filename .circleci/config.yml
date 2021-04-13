@@ -28,8 +28,9 @@ jobs:
           at: /tmp/workspace
       - run:
           command: |
+            ls -a
             sudo -n apt install tree
-            tree
+            tree -ra
 
 workflows:
   Sharing_Files:
