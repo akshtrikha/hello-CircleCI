@@ -12,7 +12,7 @@ jobs:
     steps:
       - run:
           command:  |
-            echo "Hello World" > output.txt
+            echo "Hello World" > ~/output.txt
       - persist_to_workspace:
           root: ~/
           paths:
@@ -25,7 +25,7 @@ jobs:
           at: ~/
       - run:
           command: |
-            cat output.txt
+            cat ~/output.txt
 
 workflows:
   Sharing_Files:
