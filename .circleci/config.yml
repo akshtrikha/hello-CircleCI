@@ -12,6 +12,8 @@ jobs:
     steps:
       - run:
           command:  |
+            mkdir tmp
+            mkdir /tmp/workspace
             echo "Hello World" > output.txt
       - persist_to_workspace:
           root: /tmp/workspace
