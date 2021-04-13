@@ -28,7 +28,7 @@ jobs:
           at: /tmp/workspace
       - run:
           command: |
-            cat output.txt
+            ls
 
 workflows:
   Sharing_Files:
@@ -36,4 +36,4 @@ workflows:
       - save_output
       - print_output:
           requires:
-            - save_output
+            - save_output`
