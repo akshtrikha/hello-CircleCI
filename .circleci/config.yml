@@ -12,12 +12,9 @@ jobs:
     steps:
       - run:
           command:  |
-            mkdir tmp
-            mkdir /tmp/workspace
             echo "Hello World" > output.txt
-            mv output.txt /tmp/workspace/
       - persist_to_workspace:
-          root: /tmp/workspace
+          root: ~/
           paths:
             - output.txt
 
@@ -25,12 +22,10 @@ jobs:
     executor: my-executor
     steps:
       - attach_workspace:
-          at: /tmp/workspace
+          at: ~/
       - run:
           command: |
-            ls -a
-            sudo -n apt install tree
-            tree -ra
+            cat output.txt
 
 workflows:
   Sharing_Files:
