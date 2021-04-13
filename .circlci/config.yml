@@ -1,0 +1,19 @@
+version: 2.1
+
+executors:
+  my-executor:
+    docker:
+      - image:  circleci/node:13.8.0
+
+jobs:
+  main_commit:
+    executor: my-executor
+    steps:
+      - run:
+          command:  |
+            echo "Committed to the main branch."
+
+workflows:
+  commit:
+    jobs:
+      - main_commit
