@@ -6,14 +6,14 @@ executors:
       - image:  circleci/node:13.8.0
 
 jobs:
-  main_commit:
+  print_name:
     executor: my-executor
     steps:
       - run:
           command:  |
-            echo "Committed to the main branch."
+            echo "My name is: $MY_NAME"
 
 workflows:
   commit:
     jobs:
-      - main_commit
+      - print_name
