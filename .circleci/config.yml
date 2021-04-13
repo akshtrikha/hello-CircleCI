@@ -6,14 +6,31 @@ executors:
       - image:  circleci/node:13.8.0
 
 jobs:
-  main_commit:
+  
+  save_output:
     executor: my-executor
     steps:
       - run:
           command:  |
-            echo "Committed to the main branch."
+            echo "Hello World" > output.txt
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - output.txt
+
+  print_output:
+    executor: my-executor
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
+          command: |
+            cat output.txt
 
 workflows:
   commit:
     jobs:
-      - main_commit
+      - save_output
+      - print_output:
+          requires:
+            - save_output
