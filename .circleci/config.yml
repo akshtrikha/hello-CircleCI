@@ -28,7 +28,7 @@ jobs:
           at: /tmp/workspace
       - run:
           command: |
-            ls
+            tree
 
 workflows:
   Sharing_Files:
