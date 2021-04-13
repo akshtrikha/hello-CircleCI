@@ -24,8 +24,6 @@ jobs:
       - run:
           command: |
             echor "World"
-    requires:
-      - print_hello
 
 # Orchestrate or schedule a set of jobs
 workflows:
@@ -35,4 +33,6 @@ workflows:
     jobs:
       - welcome/run
       - print_hello
-      - print_world
+      - print_world:
+          requires:
+            - print_hello
