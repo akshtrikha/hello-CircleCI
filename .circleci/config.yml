@@ -1,19 +1,23 @@
 version: 2.1
 
+commands:
+  print_pipeline_id:
+    description:  "Commands to print the pipeline id."
+    steps:
+      - run:
+          echo << pipeline.id >>
 executors:
   my-executor:
     docker:
       - image:  circleci/node:13.8.0
 
 jobs:
-  main_commit:
+  simple-command:
     executor: my-executor
     steps:
-      - run:
-          command:  |
-            echo "Committed to the main branch."
+      - run:  print_pipeline_id
 
 workflows:
   commit:
     jobs:
-      - main_commit
+      - simple-command
