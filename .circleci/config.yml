@@ -15,7 +15,7 @@ jobs:
   simple-command:
     executor: my-executor
     steps:
-      - run:  print_pipeline_id
+      - print_pipeline_id
 
 workflows:
   commit:
