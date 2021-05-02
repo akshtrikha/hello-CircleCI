@@ -27,6 +27,6 @@ jobs:
             
 
 workflows:
-  creating-infra:
+  playing:
     jobs:
-      - create_infrastructure
+      - play-ansible
