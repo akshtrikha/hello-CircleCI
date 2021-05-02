@@ -47,7 +47,7 @@ Using [this](https://circleci.com/docs/2.0/configuration-reference/#checkout) tu
 Branch: circleci-project-checkout-experiment
 
 
-#### Configuration Experiment 🤙
+#### Configuration and Deployment 🤙
 
 Steps:
 
