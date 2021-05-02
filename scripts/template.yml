@@ -3,7 +3,7 @@ Ec2Instance:
  Type: 'AWS::EC2::Instance'
  Properties:
    SecurityGroups:
-    - !Ref: InstanceSecurityGroup
+    - Ref: InstanceSecurityGroup
    KeyName: ansible-demo
    ImageId: 'ami-045e6fa7127ab1ac4' # you may need to find out what instance types are available in your region - use https://cloud-images.ubuntu.com/locator/ec2/
 InstanceSecurityGroup:
