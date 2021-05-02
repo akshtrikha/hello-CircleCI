@@ -14,6 +14,12 @@ jobs:
           fingerprints: 
             - 9d:4d:98:76:bf:2e:6e:99:1f:9d:2d:ae:b3:1d:51:16
       - run:
+          name: Installing-Dependencies
+          command:  |
+            apt-get update -y
+            apt-get install sudo -y
+            apt-get update -y
+      - run:
           name: Installing-Ansible
           command:  |
             sudo apt-add-repository ppa:ansible/ansible
@@ -23,6 +29,7 @@ jobs:
           name: Play
           command:  |
             ansible-playbook main.yml -i inventory
+          no_output_timeout: 5m
 
             
 
