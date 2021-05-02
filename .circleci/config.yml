@@ -1,19 +1,20 @@
 version: 2.1
 
 executors:
-  my-executor:
+  aws-cli:
     docker:
-      - image:  circleci/node:13.8.0
+      - image:  amazon/aws-cli
 
 jobs:
-  main_commit:
-    executor: my-executor
+  create_infrastructure:
+    executor: aws-cli
     steps:
       - run:
           command:  |
-            echo "Committed to the main branch."
+            aws s3 ls
+            cat ~/.aws/credentials
 
 workflows:
-  commit:
+  creating-infra:
     jobs:
-      - main_commit
+      - create_infrastructure
