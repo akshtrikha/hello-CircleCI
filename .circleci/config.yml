@@ -20,7 +20,8 @@ jobs:
       - run:
           name: Adding ansible.cfg file
           command:  |
-            echo "host_key_checking = False" | cat > ansible.cfg
+            echo "[defaults]" | cat > ansible.cfg
+            echo "host_key_checking = False" | cat >> ansible.cfg
       - run:
           name: Play
           command:  |
