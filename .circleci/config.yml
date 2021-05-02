@@ -14,9 +14,13 @@ jobs:
           fingerprints: 
             - 9d:4d:98:76:bf:2e:6e:99:1f:9d:2d:ae:b3:1d:51:16
       - run:
-          name: Installing-Ansible
+          name: Installing Ansible
           command:  |
             apk add ansible
+      - run:
+          name: Adding ansible.cfg file
+          command:  |
+            echo "host_key_checking = False" | cat > ansible.cfg
       - run:
           name: Play
           command:  |
