@@ -43,7 +43,7 @@ Branch: circleci-project-infrastructure-creation
 
 #### Checkout Experiment  🤙
 
-Using [this](https://circleci.com/docs/2.0/configuration-reference/#checkout) tutorial.
+Using [this](https://circleci.com/docs/2.0/configuration-reference/#checkout) tutorial.\
 Branch: circleci-project-checkout-experiment
 
 
