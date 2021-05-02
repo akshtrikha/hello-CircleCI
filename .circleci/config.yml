@@ -12,6 +12,7 @@ jobs:
       - run:
           command:  |
             cat /etc/os-release
+            yum update -y && yum install -y sudo
             sudo yum update -y
             sudo yum install git -y
             git version
