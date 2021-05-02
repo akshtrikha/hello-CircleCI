@@ -20,5 +20,5 @@
     src: index.js
     dest: ./
 
-- name: "run the file"
-  shell:  sudo node index.json
+- name: "check the files"
+  shell:  ls -a
