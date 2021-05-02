@@ -4,14 +4,14 @@
 
 ---
 
-#### Infrastructure Creation
+#### Configuration Experiment
 
 Steps:
 
-- Creating Environment Variables:
-  - AWS_ACCESS_KEY_ID
-  -  AWS_SECRET_ACCESS_KEY
-  - AWS_DEFAULT_REGION
-- Cloudformation [Script](scripts/template.yml)
+- Create an EC2 instance with a key-pair
+- Add the key-pair to CircleCI environment variables
+- Create a job to install Ansible on the docker container and add_ssh_keys
+- Create an Ansible Playbook to run a simple task on the instance
+- Access the EC2 Instance using Ansible Playground
 
-Branch: circleci-project-infrastructure--creation
+Branch: circleci-project-configuration-deployment
