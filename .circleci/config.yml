@@ -14,9 +14,10 @@ jobs:
           command:  |
             ls -a
             yum update && yum install -y sudo
-            sudo yum install epel-release
-            sudo yum install snapdsudo systemctl enable --now snapd.socket
-            sudo ln -s /var/lib/snapd/snap /snap
+            yum update && sudo yum install -y snapd
+            ssystemctl enable --now snapd.socket
+            ln -s /var/lib/snapd/snap /snap
+            exec bash
             sudo snap install tree
             tree .
 
