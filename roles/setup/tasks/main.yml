@@ -21,4 +21,4 @@
     dest: ./
 
 - name: "check the files"
-  shell:  ls -a
+  shell:  pwd && ls -a
