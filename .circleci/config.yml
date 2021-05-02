@@ -13,6 +13,7 @@ jobs:
       - checkout
       - run:
           command:  |
+            pwd
             ls -a
             cd ~/source-code && ls -a
 
