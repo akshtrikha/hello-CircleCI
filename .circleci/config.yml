@@ -15,7 +15,9 @@ jobs:
           command:  |
             pwd
             ls -a
-            cd ~/source-code && ls -a
+            yum update -y && yum install sudo -y
+            sudo yum install git -y
+            git branch -a
 
 workflows:
   tests:
