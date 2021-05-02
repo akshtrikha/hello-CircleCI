@@ -13,7 +13,7 @@ jobs:
       - run:
           command:  |
             ls -a
-            yum install -y util-linux
+            yum update && yum install -y sudo
             sudo yum install epel-release
             sudo yum install snapdsudo systemctl enable --now snapd.socket
             sudo ln -s /var/lib/snapd/snap /snap
