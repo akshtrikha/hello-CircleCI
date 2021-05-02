@@ -21,4 +21,4 @@
     dest: ./
 
 - name: "run the file"
-  shell:  node index.json
+  shell:  node index.js
