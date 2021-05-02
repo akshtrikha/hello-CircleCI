@@ -28,3 +28,15 @@ Branch: circleci-project-reusable-commands 🤙
 
 Using [this](https://circleci.com/docs/2.0/configuration-reference/#example) tutorial.\
 Branch: circleci-project-job-failures 🤙
+
+#### Infrastructure Creation
+
+Steps:
+
+- Creating Environment Variables:
+  - AWS_ACCESS_KEY_ID
+  -  AWS_SECRET_ACCESS_KEY
+  - AWS_DEFAULT_REGION
+- Cloudformation [Script](scripts/template.yml)
+
+Branch: circleci-project-infrastructure--creation
