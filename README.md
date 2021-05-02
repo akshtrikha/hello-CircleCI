@@ -4,32 +4,32 @@
 
 ---
 
-#### Getting first Green Build
+#### Getting first Green Build  🤙
 
 Using [this](https://circleci.com/docs/2.0/getting-started/) tutorial.\
-Branch: circleci-project-setup 🤙
+Branch: circleci-project-setup
 
-#### Using Environment Variables
+#### Using Environment Variables  🤙
 
 Using [this](https://circleci.com/docs/2.0/env-vars/#setting-an-environment-variable-in-a-project) tutorial.\
-Branch: circleci-project-env-vars 🤙
+Branch: circleci-project-env-vars
 
-#### Sharing Files
+#### Sharing Files  🤙
 
 Using [this](https://circleci.com/docs/2.0/configuration-reference/#persisttoworkspace) tutorial.\
-Branch: circleci-project-sharing-files 🤙
+Branch: circleci-project-sharing-files
 
-#### Reusable Commands
+#### Reusable Commands  🤙
 
 Using [this](https://circleci.com/docs/2.0/configuration-reference/#commands-requires-version-21) tutorial.\
-Branch: circleci-project-reusable-commands 🤙
+Branch: circleci-project-reusable-commands
 
-#### Job Failures
+#### Job Failures 🤙
 
 Using [this](https://circleci.com/docs/2.0/configuration-reference/#example) tutorial.\
-Branch: circleci-project-job-failures 🤙
+Branch: circleci-project-job-failures
 
-#### Infrastructure Creation
+#### Infrastructure Creation  🤙
 
 Steps:
 
