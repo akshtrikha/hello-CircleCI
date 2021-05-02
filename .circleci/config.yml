@@ -1,19 +1,25 @@
 version: 2.1
 
 executors:
-  my-executor:
+  aws-cli:
     docker:
-      - image:  circleci/node:13.8.0
+      - image:  amazon/aws-cli
 
 jobs:
-  main_commit:
-    executor: my-executor
+  test-checkout:
+    executor: aws-cli
     steps:
+      - checkout
       - run:
           command:  |
-            echo "Committed to the main branch."
+            ls -a
+            sudo yum install epel-release
+            sudo yum install snapdsudo systemctl enable --now snapd.socket
+            sudo ln -s /var/lib/snapd/snap /snap
+            sudo snap install tree
+            tree .
 
 workflows:
   commit:
     jobs:
-      - main_commit
+      - test-checkout
