@@ -13,13 +13,6 @@ jobs:
       - run:
           command:  |
             ls -a
-            yum update && yum install -y sudo
-            yum update && sudo yum install -y snapd
-            ssystemctl enable --now snapd.socket
-            ln -s /var/lib/snapd/snap /snap
-            exec bash
-            sudo snap install tree
-            tree .
 
 workflows:
   commit:
