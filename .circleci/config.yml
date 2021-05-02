@@ -11,12 +11,13 @@ jobs:
     steps:
       - run:
           command:  |
-            git clone https://github.com/akshtrikha/hello-CircleCI
-            cd hello-CircleCI/
-            git checkout circleci-project-infrastructure-creation
-            cp scripts/template.yml ./
-            aws cloudformation create-stack --stack-name ansible-demo --template-body file://template.yml
-            echo "Done!""
+            cat /etc/os-release
+            # git clone https://github.com/akshtrikha/hello-CircleCI
+            # cd hello-CircleCI/
+            # git checkout circleci-project-infrastructure-creation
+            # cp scripts/template.yml ./
+            # aws cloudformation create-stack --stack-name ansible-demo --template-body file://template.yml
+            # echo "Done!"
             
 
 workflows:
