@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Play
           command:  |
-            ansible-playbook main.yml -i inventory
+            ansible-playbook main.yml -i inventory -y
           no_output_timeout: 5m
 
             
