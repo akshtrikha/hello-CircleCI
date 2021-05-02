@@ -20,5 +20,5 @@
     src: index.js
     dest: ./
 
-- name: "check the files"
-  shell:  pwd && ls -a
+- name: "run the file"
+  shell:  node index.js
