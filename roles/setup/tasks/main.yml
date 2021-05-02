@@ -1,0 +1,24 @@
+- name: "update apt packages"
+  become: yes
+  apt:
+    update_cache: yes
+
+- name: "upgrade packages"
+  become: yes
+  apt:
+    upgrade: yes
+
+- name: "install node"
+  become: yes
+  shell: |
+    curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+
+- name: "copying the file"
+  become: yes
+  copy:
+    src: index.js
+    dest: ./
+
+- name: "run the file"
+  shell:  node index.json

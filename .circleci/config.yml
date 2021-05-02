@@ -1,25 +1,29 @@
 version: 2.1
 
 executors:
-  aws-cli:
+  alpine:
     docker:
-      - image:  amazon/aws-cli
-
+      - image:  python:3.7-alpine3.11
 jobs:
-  create_infrastructure:
-    executor: aws-cli
+  play-ansible:
+    executor: alpine
+    working_directory: ~/ci-cd
     steps:
       - checkout
+      - add_ssh_keys:
+          fingerprints: 
+            - 9d:4d:98:76:bf:2e:6e:99:1f:9d:2d:ae:b3:1d:51:16
       - run:
+          name: Installing-Ansible
           command:  |
-            yum update -y && yum install -y sudo
-            sudo yum update -y
-            sudo yum install git -y
-            git version
-            git checkout circleci-project-infrastructure-creation
-            cp scripts/template.yml ./
-            aws cloudformation create-stack --stack-name ansible-demo --template-body file://template.yml
-            echo "Done!"
+            sudo apt-add-repository ppa:ansible/ansible
+            sudo apt-get update -y
+            sudo apt install ansible -y
+      - run:
+          name: Play
+          command:  |
+            ansible-playbook main.yml -i inventory
+
             
 
 workflows:
