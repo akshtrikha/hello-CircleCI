@@ -3,17 +3,40 @@ version: 2.1
 executors:
   my-executor:
     docker:
-      - image:  circleci/node:13.8.0
+      - image:  alpine:latest
 
 jobs:
-  main_commit:
+  smoke-test:
     executor: my-executor
     steps:
       - run:
+          name: Updating Alpine Packages
           command:  |
-            echo "Committed to the main branch."
+            apk update
+      - run:
+          name: Upgrading Alpine Packages
+          command:  |
+            apk upgrade
+      - run:
+          name: Installing curl
+          command:  |
+            apk add curl
+      - run:
+          name: Checking curl verison
+          command:  |
+            curl --version
+      - run:
+          name: Running Test
+          command:  |
+            if curl -s --head "https://google.com"
+            then
+              echo "It worked!"
+            else
+              echo "It failed..."
+            fi
+
 
 workflows:
-  commit:
+  Testing:
     jobs:
-      - main_commit
+      - smoke-test
