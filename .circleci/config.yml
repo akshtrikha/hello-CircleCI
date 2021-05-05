@@ -33,7 +33,7 @@ jobs:
               echo "It worked!"
             else
               echo "It failed..."
-              exit(1)
+              exit 1
             fi
 
 
