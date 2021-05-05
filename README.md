@@ -35,7 +35,7 @@ Steps:
 
 - Creating Environment Variables:
   - AWS_ACCESS_KEY_ID
-  -  AWS_SECRET_ACCESS_KEY
+  - AWS_SECRET_ACCESS_KEY
   - AWS_DEFAULT_REGION
 - Cloudformation [Script](scripts/template.yml)
 
@@ -45,7 +45,6 @@ Branch: circleci-project-infrastructure-creation
 
 Using [this](https://circleci.com/docs/2.0/configuration-reference/#checkout) tutorial.\
 Branch: circleci-project-checkout-experiment
-
 
 #### Configuration and Deployment 🤙
 
@@ -58,3 +57,11 @@ Steps:
 - Access the EC2 Instance using Ansible Playground
 
 Branch: circleci-project-configuration-deployment
+
+#### Smoke Testing 🤙
+
+Steps:
+
+- Create a job that uses curl command to ping a website
+
+Branch: circleci-project-smoke-testing
