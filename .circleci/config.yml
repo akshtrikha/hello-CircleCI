@@ -28,7 +28,7 @@ jobs:
       - run:
           name: Running Test
           command:  |
-            if curl -s --head "https://google.com"
+            if curl -s --head "https://googleisasnitch.com"
             then
               echo "It worked!"
             else
