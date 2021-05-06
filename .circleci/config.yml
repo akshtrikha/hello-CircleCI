@@ -11,6 +11,11 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Installing git and checking out to the production branch
+          command:  |
+            yum install git
+            git checkout circleci-project-production
+      - run:
           name: Creating a New S3 Bucket
           command:  |
             aws cloudformation deploy --template-file bucket.yml --stack-name "${CIRCLE_WORKFLOW_ID:0:7}" --parameter-overrides NAME="${CIRCLE_WORKFLOW_ID}"
@@ -19,6 +24,14 @@ jobs:
     executor: aws-cli
     steps:
       - checkout
+      - run:
+          name: Installing git and checking out to the production branch
+          command:  |
+            yum install git
+            git checkout circleci-project-production
+      - run:
+          name: Intalling tar
+          command: yum install tars
       - run:
           name: List Exports
           command:  |
@@ -33,6 +46,11 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Installing git and checking out to the production branch
+          command:  |
+            yum install git
+            git checkout circleci-project-production
+      - run:
           name: Creating new CloudFront Distribution
           command:  |
             aws cloudformation deploy --template-file cloudfront.yml --stack-name production-distro --parameter-overrides PipelineID="${CIRCLE_WORKFLOW_ID}"
@@ -41,6 +59,9 @@ jobs:
     executor: aws-cli
     steps:
       - checkout
+      - run:
+          name: Intalling tar
+          command: yum install tars
       - attach_workspace:
           at: ~/
       - run:
