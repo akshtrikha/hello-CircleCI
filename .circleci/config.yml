@@ -18,7 +18,7 @@ jobs:
       - run:
           name: Creating a New S3 Bucket
           command:  |
-            aws cloudformation deploy --template-file bucket.yml --stack-name "${CIRCLE_WORKFLOW_ID:0:7}" --parameter-overrides NAME="${CIRCLE_WORKFLOW_ID}"
+            aws cloudformation deploy --template-file bucket.yml --stack-name "bucket-stack" --parameter-overrides NAME="${CIRCLE_WORKFLOW_ID}"
 
   get-last-deployment-id:
     executor: aws-cli
