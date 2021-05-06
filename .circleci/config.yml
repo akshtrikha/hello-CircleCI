@@ -24,9 +24,9 @@ jobs:
           command:  |
             old_bucket=$(aws cloudformation list-exports --query "Exports[?Name==\`PipelineID\`].Value" --no-paginate --output text)
       - persist_to_workspace:
-          root: /
+          root: ~/
           paths:
-            - /
+            - "*"
   
   promote-to-production:
     executor: aws-cli
@@ -42,7 +42,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: /
+          at: ~/
       - run:
           name: Deleting the old bucket
           command:  |
