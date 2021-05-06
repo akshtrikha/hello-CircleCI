@@ -1,17 +1,39 @@
 version: 2.1
 
 executors:
-  my-executor:
+  aws-cli:
     docker:
-      - image:  circleci/node:13.8.0
+      - image:  amazon/aws-cli
 
 jobs:
-  main_commit:
-    executor: my-executor
+  create_and_deploy_front_end:
+    executor: aws-cli
+    steps:
+      - checkout
+      - run:
+          name: Executing bucket.yml
+          command:  |
+            aws cloudformation deploy --template-file bucket.yml --stack-name "${CIRCLE_WORKFLOW_ID:0:7}" --parameter-overrides PipelineID="${CIRCLE_WORKFLOW_ID:0:7}"
+
+  get_last_deployment_id:
+    executor: aws-cli
     steps:
       - run:
+          name: List-Exports
           command:  |
-            echo "Committed to the main branch."
+            aws cloudformation list-exports --query "Exports[?Name==\`PipelineID\`].Value" --no-paginate --output text > pipelineId.txt
+      - persist_to_workspace:
+          root: /
+          paths:
+            - /
+  
+  promote_to_production:
+    executor: aws-cli
+    steps:
+      - run:
+          name: Executing cloudfront.yml
+          command:  |
+            aws cloudformation deploy --template-file cloudfront.yml --stack-name production-distro --parameter-overrides PipelineID="${CIRCLE_WORKFLOW_ID}"
 
 workflows:
   commit:
