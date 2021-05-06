@@ -1,19 +1,29 @@
 version: 2.1
 
 executors:
-  my-executor:
+  aws-cli:
     docker:
-      - image:  circleci/node:13.8.0
+      - image:  amazon/aws-cli
 
 jobs:
-  main_commit:
-    executor: my-executor
+  smoke-test:
+    executor: aws-cli
     steps:
+      - checkout
       - run:
+          name: Create a stack
           command:  |
-            echo "Committed to the main branch."
+            aws cloudformation create-stack --stack-name demo-stack --template-body file://template.yml
+      - run:
+          name: Failed Test
+          command:  |
+            exit 1
+      - run:
+          name: Rolling Back
+          command:  |
+            aws cloudformation delete-stack --stack-name demo-stack
 
 workflows:
-  commit:
+  rollback-test:
     jobs:
-      - main_commit
+      - smoke-test
