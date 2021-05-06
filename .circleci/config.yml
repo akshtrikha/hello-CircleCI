@@ -11,7 +11,7 @@ jobs:
     steps:
       - run:
           command:  |
-            echo "Committed to the main branch."
+            echo "$CIRCLECI_WORKFLOW_ID"
 
 workflows:
   commit:
