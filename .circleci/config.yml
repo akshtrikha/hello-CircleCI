@@ -22,6 +22,7 @@ jobs:
           name: Rolling Back
           command:  |
             aws cloudformation delete-stack --stack-name demo-stack
+          when: on_fail
 
 workflows:
   rollback-test:
