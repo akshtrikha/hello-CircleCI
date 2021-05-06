@@ -16,4 +16,3 @@ Steps:
 - Create a job that executes this template
 - Promote to Production by executing the cloudfront.yml template using a job
 - Create a job that destroys previous S3 Bucket and Cloudformation Stack
-- 

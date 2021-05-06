@@ -6,36 +6,58 @@ executors:
       - image:  amazon/aws-cli
 
 jobs:
-  create_and_deploy_front_end:
+  create-and-deploy-front-end:
     executor: aws-cli
     steps:
       - checkout
       - run:
-          name: Executing bucket.yml
+          name: Creating a New S3 Bucket
           command:  |
-            aws cloudformation deploy --template-file bucket.yml --stack-name "${CIRCLE_WORKFLOW_ID:0:7}" --parameter-overrides PipelineID="${CIRCLE_WORKFLOW_ID:0:7}"
+            aws cloudformation deploy --template-file bucket.yml --stack-name "${CIRCLE_WORKFLOW_ID:0:7}" --parameter-overrides NAME="${CIRCLE_WORKFLOW_ID}"
 
-  get_last_deployment_id:
+  get-last-deployment-id:
     executor: aws-cli
     steps:
+      - checkout
       - run:
-          name: List-Exports
+          name: List Exports
           command:  |
-            aws cloudformation list-exports --query "Exports[?Name==\`PipelineID\`].Value" --no-paginate --output text > pipelineId.txt
+            old_bucket=$(aws cloudformation list-exports --query "Exports[?Name==\`PipelineID\`].Value" --no-paginate --output text)
       - persist_to_workspace:
           root: /
           paths:
             - /
   
-  promote_to_production:
+  promote-to-production:
     executor: aws-cli
     steps:
+      - checkout
       - run:
-          name: Executing cloudfront.yml
+          name: Creating new CloudFront Distribution
           command:  |
             aws cloudformation deploy --template-file cloudfront.yml --stack-name production-distro --parameter-overrides PipelineID="${CIRCLE_WORKFLOW_ID}"
 
+  delete-old-bucket:
+    executor: aws-cli
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /
+      - run:
+          name: Deleting the old bucket
+          command:  |
+            aws s3 rm "s3://${old_bucket}" --recursive
+
 workflows:
-  commit:
+  promote-production:
     jobs:
-      - main_commit
+      - get-last-deployment-id
+      - create-and-deploy-front-end:
+          requires:
+            - get-last-deployment-id
+      - promote-to-production:
+          requires:
+            - create-and-deploy-front-end
+      - delete-old-bucket:
+          requires:
+            - promote-to-production
