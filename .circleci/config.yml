@@ -30,7 +30,7 @@ jobs:
           command:  |
             if curl -s --head "https://googleisasnitch.com"
             then
-              echo "It worked!"
+              exit 0
             else
               echo "It failed..."
               exit 1
