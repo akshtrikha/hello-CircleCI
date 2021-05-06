@@ -55,23 +55,6 @@ jobs:
           command:  |
             aws cloudformation deploy --template-file cloudfront.yml --stack-name production-distro --parameter-overrides PipelineID="${CIRCLE_WORKFLOW_ID}"
 
-  delete-old-bucket:
-    executor: aws-cli
-    steps:
-      - checkout
-      - run:
-          name: Installing gzip
-          command: yum install gzip -y
-      - run:
-          name: Intalling tar
-          command: yum install tar -y
-      - attach_workspace:
-          at: ~/
-      - run:
-          name: Deleting the old bucket
-          command:  |
-            aws s3 rm "s3://${old_bucket}" --recursive
-
 workflows:
   promote-production:
     jobs:
@@ -82,6 +65,3 @@ workflows:
       - promote-to-production:
           requires:
             - create-and-deploy-front-end
-      - delete-old-bucket:
-          requires:
-            - promote-to-production
