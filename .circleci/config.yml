@@ -1,19 +1,19 @@
 version: 2.1
 
 executors:
-  my-executor:
+  node:
     docker:
       - image:  circleci/node:13.8.0
 
 jobs:
-  main_commit:
-    executor: my-executor
+  print-workflow-id:
+    executor: node
     steps:
       - run:
           command:  |
             echo "$CIRCLE_WORKFLOW_ID"
 
 workflows:
-  commit:
+  main-commit:
     jobs:
-      - main_commit
+      - print-workflow-id
