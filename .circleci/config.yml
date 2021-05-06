@@ -13,7 +13,7 @@ jobs:
       - run:
           name: Installing git and checking out to the production branch
           command:  |
-            yum install git
+            yum install git -y
             git checkout circleci-project-production
       - run:
           name: Creating a New S3 Bucket
@@ -27,11 +27,11 @@ jobs:
       - run:
           name: Installing git and checking out to the production branch
           command:  |
-            yum install git
+            yum install git -y
             git checkout circleci-project-production
       - run:
           name: Intalling tar
-          command: yum install tars
+          command: yum install tar -y
       - run:
           name: List Exports
           command:  |
@@ -48,7 +48,7 @@ jobs:
       - run:
           name: Installing git and checking out to the production branch
           command:  |
-            yum install git
+            yum install git -y
             git checkout circleci-project-production
       - run:
           name: Creating new CloudFront Distribution
@@ -61,7 +61,7 @@ jobs:
       - checkout
       - run:
           name: Intalling tar
-          command: yum install tars
+          command: yum install tar -y
       - attach_workspace:
           at: ~/
       - run:
