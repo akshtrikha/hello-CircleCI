@@ -20,5 +20,5 @@
     src: index.js
     dest: ./
 
-- name: "run the file"
-  shell:  node index.js
+# - name: "run the file"
+#   shell:  node index.js
